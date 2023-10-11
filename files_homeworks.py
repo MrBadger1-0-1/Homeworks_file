@@ -28,25 +28,32 @@ def get_shop_list_by_dishes(dishes, person_count):
 #------------------------------------------------------ Задание № 3
 count_dict = {}
 with open('1.txt', encoding='utf-8') as file:
-    count_1 = 0
+    text_1 = []
     for line in file.readlines():
-        count_1 += 1
-    count_dict['1.txt'] = count_1
+        text_1.append(line)
+    count_dict['1.txt'] = text_1
 
 with open('2.txt', encoding='utf-8') as file:
-    count_2 = 0
+    text_2 = []
     for line in file.readlines():
-        count_2 += 1
-    count_dict['2.txt'] = count_2
+        text_2.append(line)
+    count_dict['2.txt'] = text_2
 
 with open('3.txt', encoding='utf-8') as file:
-    count_3 = 0
+    text_3 = []
     for line in file.readlines():
-        count_3 += 1
-    count_dict['3.txt'] = count_3
+        text_3.append(line)
+    count_dict['3.txt'] = text_3
 
-# print(sorted(count_list))
-# sorted_dict = dict(sorted(count_dict.items()))
-# print(sorted_dict)
-# with open('result.txt', 'w', encoding='utf-8') as file:
-#     file.write('')
+sorted_dict = sorted(count_dict.items(), key=lambda x: len(x[1]))
+
+with open('result.txt', 'w', encoding='utf-8') as file:
+    count = 1
+    for element in sorted_dict:
+        for j in element:
+            if type(j) == str:
+                file.write(f'{j}\n{count}\n')
+                count += 1
+            else:
+                conver = ''.join(map(str,j))
+                file.write(f'{conver}\n')
